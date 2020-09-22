@@ -3,17 +3,16 @@ import 'package:flutter/material.dart';
 class VerticalCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Card(
       elevation: 2,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Container(
-            margin: EdgeInsets.only(bottom: 15.0),
-            height: 200,
-            width: 200,
+            height: size.height * 0.25,
+            width: size.height * 0.25,
             decoration: BoxDecoration(
-              color: Colors.red,
               image: DecorationImage(
                 fit: BoxFit.cover,
                 alignment: FractionalOffset.topCenter,
@@ -23,13 +22,17 @@ class VerticalCard extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 8.0, bottom: 8.0),
+            padding: EdgeInsets.only(
+              top: size.height * 0.01,
+              left: size.width * 0.02,
+            ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 RichText(
                   text: TextSpan(
-                    style: TextStyle(fontSize: 17.0, color: Colors.black),
+                    style: TextStyle(
+                        fontSize: size.height * 0.022, color: Colors.black),
                     children: <TextSpan>[
                       TextSpan(
                           text: 'Carro: ',
@@ -40,7 +43,8 @@ class VerticalCard extends StatelessWidget {
                 ),
                 RichText(
                   text: TextSpan(
-                    style: TextStyle(fontSize: 17.0, color: Colors.black),
+                    style: TextStyle(
+                        fontSize: size.height * 0.022, color: Colors.black),
                     children: <TextSpan>[
                       TextSpan(
                           text: 'Modelo: ',
@@ -51,7 +55,8 @@ class VerticalCard extends StatelessWidget {
                 ),
                 RichText(
                   text: TextSpan(
-                    style: TextStyle(fontSize: 17.0, color: Colors.black),
+                    style: TextStyle(
+                        fontSize: size.height * 0.022, color: Colors.black),
                     children: <TextSpan>[
                       TextSpan(
                           text: 'Preco: ',
