@@ -4,7 +4,7 @@ class VendidosScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text("Estoque"),
+      child: Text("Vendidos"),
     );
   }
 }
