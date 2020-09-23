@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class HorizontalCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    Size screenSize = MediaQuery.of(context).size;
     return Padding(
       padding: const EdgeInsets.only(right: 8.0),
       child: Card(
@@ -10,8 +11,9 @@ class HorizontalCard extends StatelessWidget {
         child: Row(
           children: <Widget>[
             Container(
-              height: 170,
-              width: 200,
+              margin: EdgeInsets.only(right: 6.0),
+              height: screenSize.height * 0.22,
+              width: screenSize.height * 0.25,
               decoration: BoxDecoration(
                 color: Colors.red,
                 image: DecorationImage(
@@ -22,46 +24,56 @@ class HorizontalCard extends StatelessWidget {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 8.0, bottom: 8.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  RichText(
-                    text: TextSpan(
-                      style: TextStyle(fontSize: 17.0, color: Colors.black),
-                      children: <TextSpan>[
-                        TextSpan(
-                            text: 'Carro: ',
-                            style: TextStyle(fontWeight: FontWeight.bold)),
-                        TextSpan(text: 'BMW'),
-                      ],
+            Expanded(
+              child: Container(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    RichText(
+                      overflow: TextOverflow.ellipsis,
+                      text: TextSpan(
+                        style: TextStyle(
+                            fontSize: screenSize.height * 0.022,
+                            color: Colors.black),
+                        children: <TextSpan>[
+                          TextSpan(
+                              text: 'Carro: ',
+                              style: TextStyle(fontWeight: FontWeight.bold)),
+                          TextSpan(text: 'Tracker'),
+                        ],
+                      ),
                     ),
-                  ),
-                  RichText(
-                    text: TextSpan(
-                      style: TextStyle(fontSize: 17.0, color: Colors.black),
-                      children: <TextSpan>[
-                        TextSpan(
-                            text: 'Modelo: ',
-                            style: TextStyle(fontWeight: FontWeight.bold)),
-                        TextSpan(text: 'SUDIA951'),
-                      ],
+                    RichText(
+                      overflow: TextOverflow.ellipsis,
+                      text: TextSpan(
+                        style: TextStyle(
+                            fontSize: screenSize.height * 0.022,
+                            color: Colors.black),
+                        children: <TextSpan>[
+                          TextSpan(
+                              text: 'Modelo: ',
+                              style: TextStyle(fontWeight: FontWeight.bold)),
+                          TextSpan(text: '1.0T'),
+                        ],
+                      ),
                     ),
-                  ),
-                  RichText(
-                    text: TextSpan(
-                      style: TextStyle(fontSize: 17.0, color: Colors.black),
-                      children: <TextSpan>[
-                        TextSpan(
-                            text: 'Preco: ',
-                            style: TextStyle(fontWeight: FontWeight.bold)),
-                        TextSpan(text: 'R\$80.000,00'),
-                      ],
+                    RichText(
+                      overflow: TextOverflow.ellipsis,
+                      text: TextSpan(
+                        style: TextStyle(
+                            fontSize: screenSize.height * 0.022,
+                            color: Colors.black),
+                        children: <TextSpan>[
+                          TextSpan(
+                              text: 'Preco: ',
+                              style: TextStyle(fontWeight: FontWeight.bold)),
+                          TextSpan(text: 'R\$87.490,00'),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ],

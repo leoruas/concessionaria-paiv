@@ -21,51 +21,54 @@ class VerticalCard extends StatelessWidget {
               ),
             ),
           ),
-          Padding(
-            padding: EdgeInsets.only(
-              top: size.height * 0.01,
-              left: size.width * 0.02,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                RichText(
-                  text: TextSpan(
-                    style: TextStyle(
-                        fontSize: size.height * 0.022, color: Colors.black),
-                    children: <TextSpan>[
-                      TextSpan(
-                          text: 'Carro: ',
-                          style: TextStyle(fontWeight: FontWeight.bold)),
-                      TextSpan(text: 'BMW'),
-                    ],
+          Expanded(
+            child: Container(
+              margin: EdgeInsets.only(left: 6.0, top: 4.0),
+              constraints: BoxConstraints(maxWidth: size.height * 0.24),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  RichText(
+                    overflow: TextOverflow.ellipsis,
+                    text: TextSpan(
+                      style: TextStyle(
+                          fontSize: size.height * 0.022, color: Colors.black),
+                      children: <TextSpan>[
+                        TextSpan(
+                            text: 'Carro: ',
+                            style: TextStyle(fontWeight: FontWeight.bold)),
+                        TextSpan(text: 'Tracker'),
+                      ],
+                    ),
                   ),
-                ),
-                RichText(
-                  text: TextSpan(
-                    style: TextStyle(
-                        fontSize: size.height * 0.022, color: Colors.black),
-                    children: <TextSpan>[
-                      TextSpan(
-                          text: 'Modelo: ',
-                          style: TextStyle(fontWeight: FontWeight.bold)),
-                      TextSpan(text: 'SUDIA951'),
-                    ],
+                  RichText(
+                    overflow: TextOverflow.ellipsis,
+                    text: TextSpan(
+                      style: TextStyle(
+                          fontSize: size.height * 0.022, color: Colors.black),
+                      children: <TextSpan>[
+                        TextSpan(
+                            text: 'Modelo: ',
+                            style: TextStyle(fontWeight: FontWeight.bold)),
+                        TextSpan(text: '1.0T'),
+                      ],
+                    ),
                   ),
-                ),
-                RichText(
-                  text: TextSpan(
-                    style: TextStyle(
-                        fontSize: size.height * 0.022, color: Colors.black),
-                    children: <TextSpan>[
-                      TextSpan(
-                          text: 'Preco: ',
-                          style: TextStyle(fontWeight: FontWeight.bold)),
-                      TextSpan(text: 'R\$80.000,00'),
-                    ],
+                  RichText(
+                    overflow: TextOverflow.ellipsis,
+                    text: TextSpan(
+                      style: TextStyle(
+                          fontSize: size.height * 0.022, color: Colors.black),
+                      children: <TextSpan>[
+                        TextSpan(
+                            text: 'Preco: ',
+                            style: TextStyle(fontWeight: FontWeight.bold)),
+                        TextSpan(text: 'R\$87.490,00'),
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ],

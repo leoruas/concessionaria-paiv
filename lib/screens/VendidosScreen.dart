@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class CarrosScreen extends StatelessWidget {
+class EstoqueScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text("Carros"),
+      child: Text("Vendidos"),
     );
   }
 }

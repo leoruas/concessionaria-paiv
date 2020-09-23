@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:concessionaria_paiv/widgets/AppBarWidget.dart';
-import 'package:concessionaria_paiv/screens/CarrosScreen.dart';
-import 'package:concessionaria_paiv/screens/HomeScreen.dart';
 import 'package:concessionaria_paiv/screens/EstoqueScreen.dart';
+import 'package:concessionaria_paiv/screens/HomeScreen.dart';
+import 'package:concessionaria_paiv/screens/VendidosScreen.dart';
 
 void main() {
   runApp(MyApp());
@@ -44,7 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.directions_car),
-            title: Text('Carros'),
+            title: Text('Estoque'),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
@@ -52,7 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.attach_money),
-            title: Text('Estoque'),
+            title: Text('Vendidos'),
           )
         ],
         onTap: (index) {
