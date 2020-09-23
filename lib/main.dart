@@ -1,9 +1,9 @@
 import 'package:concessionaria_paiv/utils/Router.dart';
 import 'package:flutter/material.dart';
 import 'package:concessionaria_paiv/widgets/AppBarWidget.dart';
-import 'package:concessionaria_paiv/screens/EstoqueScreen.dart';
-import 'package:concessionaria_paiv/screens/HomeScreen.dart';
 import 'package:concessionaria_paiv/screens/VendidosScreen.dart';
+import 'package:concessionaria_paiv/screens/HomeScreen.dart';
+import 'package:concessionaria_paiv/screens/EstoqueScreen.dart';
 
 void main() {
   runApp(MyApp());
@@ -30,7 +30,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Icon btnIcon = Icon(Icons.search);
   Widget appBar = Text('Concessionária Paiv');
 
-  final tabs = <Widget>[CarrosScreen(), HomeScreen(), EstoqueScreen()];
+  final tabs = <Widget>[EstoqueScreen(), HomeScreen(), VendidosScreen()];
 
   @override
   Widget build(BuildContext context) {
