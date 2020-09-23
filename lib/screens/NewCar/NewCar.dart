@@ -1,6 +1,6 @@
-import 'package:concessionaria_paiv/screens/NewCar/Steps/Imagem.dart';
-import 'package:concessionaria_paiv/screens/NewCar/Steps/Radios.dart';
-import 'package:concessionaria_paiv/screens/NewCar/Steps/TextInputs.dart';
+import 'package:concessionaria_paiv/screens/NewCar/Steps/Image.dart';
+import 'package:concessionaria_paiv/screens/NewCar/Steps/Description.dart';
+import 'package:concessionaria_paiv/screens/NewCar/Steps/Information.dart';
 import 'package:flutter/material.dart';
 
 class NewCar extends StatefulWidget {
@@ -46,9 +46,7 @@ class _NewCarState extends State<NewCar> {
                 _currentStep++;
               });
             } else {
-              setState(() {
-                _currentStep = 0;
-              });
+              Navigator.pop(context);
             }
           },
           onStepCancel: () {
@@ -56,6 +54,8 @@ class _NewCarState extends State<NewCar> {
               setState(() {
                 _currentStep--;
               });
+            } else {
+              Navigator.pop(context);
             }
           },
         ),
