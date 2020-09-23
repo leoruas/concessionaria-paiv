@@ -1,3 +1,4 @@
+import 'package:concessionaria_paiv/utils/Router.dart';
 import 'package:flutter/material.dart';
 import 'package:concessionaria_paiv/widgets/AppBarWidget.dart';
 import 'package:concessionaria_paiv/screens/CarrosScreen.dart';
@@ -13,6 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      onGenerateRoute: Router.generateRoute,
       home: MyHomePage(),
     );
   }
