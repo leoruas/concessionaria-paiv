@@ -76,14 +76,6 @@ class HorizontalCard extends StatelessWidget {
                 ),
               ),
             ),
-            IconButton(
-              icon: Icon(
-                Icons.info,
-                size: 20.0,
-                color: Colors.grey,
-              ),
-              onPressed: (){},
-            ),
           ],
         ),
       ),

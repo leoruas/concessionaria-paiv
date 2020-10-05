@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class VendidosScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    List<Widget> lastAdded = <Widget>[
+    List<Widget> soldCar = <Widget>[
       HorizontalCard(),
       HorizontalCard(),
       HorizontalCard(),
@@ -15,23 +15,7 @@ class VendidosScreen extends StatelessWidget {
     return SingleChildScrollView(
      child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.only(left: 12.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Container(
-                  height: 3000,
-                  child: ListView(
-                    children: lastAdded,
-                    scrollDirection: Axis.vertical,
-                  ),
-                ),
-              ],
-            ),
-          )
-        ],
+        children: soldCar,
       ),
     );
   }
