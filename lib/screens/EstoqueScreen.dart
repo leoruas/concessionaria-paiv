@@ -4,11 +4,14 @@ import 'package:flutter/material.dart';
 class EstoqueScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: FlatButton(
+    return Scaffold(
+      body: Center(
+        child: Text("Estoque"),
+      ),
+      floatingActionButton: FloatingActionButton(
         onPressed: () => Navigator.pushNamed(context, newCarRouteName),
-        color: Colors.grey[350],
-        child: Text('Adicionar Carro'),
+        child: Icon(Icons.add),
+        backgroundColor: Colors.red.shade900,
       ),
     );
   }
