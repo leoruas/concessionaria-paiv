@@ -8,27 +8,34 @@ class HorizontalCard extends StatelessWidget {
       padding: const EdgeInsets.only(right: 8.0),
       child: Card(
         elevation: 2,
-        child: Row(
+        child: Stack(
           children: <Widget>[
-            Container(
-              margin: EdgeInsets.only(right: 6.0),
-              height: screenSize.height * 0.22,
-              width: screenSize.height * 0.25,
-              decoration: BoxDecoration(
-                color: Colors.red,
-                image: DecorationImage(
-                  fit: BoxFit.cover,
-                  alignment: FractionalOffset.topCenter,
-                  image: NetworkImage(
-                      'https://s2.glbimg.com/JMEgHotm57qsaD3uBVjDHPJdyno=/620x413/e.glbimg.com/og/ed/f/original/2020/03/20/novo_tracker_1.jpg'),
-                ),
+            Positioned(
+              top: screenSize.height * 0.01,
+              right: screenSize.height * 0.01,
+              child: GestureDetector(
+                child: Icon(Icons.info, color: Colors.grey[500]),
+                onTap: () => print("open info"),
               ),
             ),
-            Expanded(
-              child: Container(
-                child: Column(
+            Row(
+              children: <Widget>[
+                Container(
+                  margin: EdgeInsets.only(right: 6.0),
+                  height: screenSize.height * 0.22,
+                  width: screenSize.height * 0.25,
+                  decoration: BoxDecoration(
+                    color: Colors.red,
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      alignment: FractionalOffset.topCenter,
+                      image: NetworkImage(
+                          'https://s2.glbimg.com/JMEgHotm57qsaD3uBVjDHPJdyno=/620x413/e.glbimg.com/og/ed/f/original/2020/03/20/novo_tracker_1.jpg'),
+                    ),
+                  ),
+                ),
+                Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     RichText(
                       overflow: TextOverflow.ellipsis,
@@ -74,7 +81,7 @@ class HorizontalCard extends StatelessWidget {
                     ),
                   ],
                 ),
-              ),
+              ],
             ),
           ],
         ),
