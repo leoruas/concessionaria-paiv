@@ -13,18 +13,17 @@ class EstoqueScreen extends StatelessWidget {
       HorizontalCard(),
       HorizontalCard(),
     ];
-    return SingleChildScrollView(
-      child: Scaffold(
-        body: Column(
-          Text("Estoque"),
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: stockCar,
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () => Navigator.pushNamed(context, newCarRouteName),
-          child: Icon(Icons.add),
-          backgroundColor: Colors.red.shade900,
-        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => Navigator.pushNamed(context, newCarRouteName),
+        child: Icon(Icons.add),
+        backgroundColor: Colors.red.shade900,
       ),
     );
   }

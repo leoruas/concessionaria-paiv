@@ -1,4 +1,4 @@
-import 'package:concessionaria_paiv/utils/Router.dart';
+import 'package:concessionaria_paiv/utils/RouterView.dart';
 import 'package:flutter/material.dart';
 import 'package:concessionaria_paiv/widgets/AppBarWidget.dart';
 import 'package:concessionaria_paiv/screens/VendidosScreen.dart';
@@ -14,7 +14,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      onGenerateRoute: Router.generateRoute,
+      theme: ThemeData(
+          primaryColor: Colors.red.shade900
+      ),
+      onGenerateRoute: RouterView.generateRoute,
       home: MyHomePage(),
     );
   }
@@ -46,15 +49,15 @@ class _MyHomePageState extends State<MyHomePage> {
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.directions_car),
-            title: Text('Estoque'),
+            label: 'Estoque',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            title: Text('Home'),
+            label: 'Home',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.attach_money),
-            title: Text('Vendidos'),
+            label: 'Vendidos',
           )
         ],
         onTap: (index) {
