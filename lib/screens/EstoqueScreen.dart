@@ -9,7 +9,7 @@ class EstoqueScreen extends StatelessWidget {
         child: Text("Estoque"),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => Navigator.pushNamed(context, newCarRouteName),
+        onPressed: () => Navigator.pushNamed(context, newCarRouteName),        
         child: Icon(Icons.add),
         backgroundColor: Colors.red.shade900,
       ),

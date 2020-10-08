@@ -1,3 +1,4 @@
+import 'package:concessionaria_paiv/utils/Magic.dart';
 import 'package:flutter/material.dart';
 
 class HorizontalCard extends StatelessWidget {
@@ -15,7 +16,7 @@ class HorizontalCard extends StatelessWidget {
               right: screenSize.height * 0.01,
               child: GestureDetector(
                 child: Icon(Icons.info, color: Colors.grey[500]),
-                onTap: () => print("open info"),
+                onTap: () => Navigator.pushNamed(context, infoCarRouteName)
               ),
             ),
             Row(

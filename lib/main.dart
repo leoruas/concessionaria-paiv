@@ -14,6 +14,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+          primaryColor: Colors.red.shade900
+      ),
       onGenerateRoute: RouterView.generateRoute,
       home: MyHomePage(),
     );
