@@ -1,8 +1,12 @@
+import 'package:concessionaria_paiv/models/Car.dart';
 import 'package:concessionaria_paiv/utils/Magic.dart';
 import 'package:concessionaria_paiv/widgets/AtributoInfo.dart';
 import 'package:flutter/material.dart';
 
 class InfoScreen extends StatelessWidget {
+  final Car car;
+  InfoScreen({@required this.car});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,39 +30,39 @@ class InfoScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      AtributoInfo('Nome', 'Tracker'),
+                      AtributoInfo('Nome', car.name),
                       Divider(
                           color: Colors.grey
                       ),
-                      AtributoInfo('Modelo', '1.0T'),
+                      AtributoInfo('Modelo', car.model),
                       Divider(
                           color: Colors.grey
                       ),
-                      AtributoInfo('Preço', 'R\$ 87.490,00'),
+                      AtributoInfo('Preço', 'R\$ ' + car.price.toString()),
                       Divider(
                           color: Colors.grey
                       ),
-                      AtributoInfo('Ano', '2020'),
+                      AtributoInfo('Ano', car.year.toString()),
                       Divider(
                           color: Colors.grey
                       ),
-                      AtributoInfo('Marca', 'volkswagen'),
+                      AtributoInfo('Marca', car.brand),
                       Divider(
                           color: Colors.grey
                       ),
-                      AtributoInfo('Km', '0'),
+                      AtributoInfo('Km', car.km.toString()),
                       Divider(
                           color: Colors.grey
                       ),
-                      AtributoInfo('Carro Novo', 'Sim'),
+                      AtributoInfo('Carro Novo', car.isNew == 1 ? 'Sim' : 'Não'),
                       Divider(
                           color: Colors.grey
                       ),
-                      AtributoInfo('Câmbio', 'Automático'),
+                      AtributoInfo('Câmbio', car.isAuto == 1 ? 'Automático' : 'Manual'),
                       Divider(
                           color: Colors.grey
                       ),
-                      AtributoInfo('Cor', 'Azul')
+                      AtributoInfo('Cor', car.color)
                     ],
                   )),
             ],

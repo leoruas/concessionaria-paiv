@@ -1,6 +1,10 @@
+import 'package:concessionaria_paiv/models/Car.dart';
 import 'package:flutter/material.dart';
 
 class VerticalCard extends StatelessWidget {
+  VerticalCard({this.car});
+  final Car car;
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -37,7 +41,7 @@ class VerticalCard extends StatelessWidget {
                         TextSpan(
                             text: 'Carro: ',
                             style: TextStyle(fontWeight: FontWeight.bold)),
-                        TextSpan(text: 'Tracker'),
+                        TextSpan(text: car.name),
                       ],
                     ),
                   ),
@@ -50,7 +54,7 @@ class VerticalCard extends StatelessWidget {
                         TextSpan(
                             text: 'Modelo: ',
                             style: TextStyle(fontWeight: FontWeight.bold)),
-                        TextSpan(text: '1.0T'),
+                        TextSpan(text: car.model),
                       ],
                     ),
                   ),
@@ -61,9 +65,22 @@ class VerticalCard extends StatelessWidget {
                           fontSize: size.height * 0.022, color: Colors.black),
                       children: <TextSpan>[
                         TextSpan(
-                            text: 'Preco: ',
+                            text: 'Preco: R\$',
                             style: TextStyle(fontWeight: FontWeight.bold)),
-                        TextSpan(text: 'R\$87.490,00'),
+                        TextSpan(text: car.price.toString()),
+                      ],
+                    ),
+                  ),
+                  RichText(
+                    overflow: TextOverflow.ellipsis,
+                    text: TextSpan(
+                      style: TextStyle(
+                          fontSize: size.height * 0.022, color: Colors.black),
+                      children: <TextSpan>[
+                        TextSpan(
+                            text: 'ID: ',
+                            style: TextStyle(fontWeight: FontWeight.bold)),
+                        TextSpan(text: car.id.toString()),
                       ],
                     ),
                   ),

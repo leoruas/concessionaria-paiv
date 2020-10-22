@@ -5,7 +5,7 @@ import 'package:concessionaria_paiv/screens/VendidosScreen.dart';
 import 'package:concessionaria_paiv/screens/HomeScreen.dart';
 import 'package:concessionaria_paiv/screens/EstoqueScreen.dart';
 
-void main() {
+void main() async {
   runApp(MyApp());
 }
 

@@ -1,7 +1,12 @@
+import 'package:concessionaria_paiv/models/Car.dart';
+import 'package:concessionaria_paiv/screens/InfoScreen.dart';
 import 'package:concessionaria_paiv/utils/Magic.dart';
 import 'package:flutter/material.dart';
 
 class HorizontalCard extends StatelessWidget {
+  HorizontalCard({this.car});
+  final Car car;
+
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
@@ -16,7 +21,12 @@ class HorizontalCard extends StatelessWidget {
               right: screenSize.height * 0.01,
               child: GestureDetector(
                 child: Icon(Icons.info, color: Colors.grey[500]),
-                onTap: () => Navigator.pushNamed(context, infoCarRouteName)
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => InfoScreen(car: car),
+                  ),
+                ),
               ),
             ),
             Row(
@@ -48,7 +58,7 @@ class HorizontalCard extends StatelessWidget {
                           TextSpan(
                               text: 'Carro: ',
                               style: TextStyle(fontWeight: FontWeight.bold)),
-                          TextSpan(text: 'Tracker'),
+                          TextSpan(text: car.name),
                         ],
                       ),
                     ),
@@ -62,7 +72,7 @@ class HorizontalCard extends StatelessWidget {
                           TextSpan(
                               text: 'Modelo: ',
                               style: TextStyle(fontWeight: FontWeight.bold)),
-                          TextSpan(text: '1.0T'),
+                          TextSpan(text: car.model),
                         ],
                       ),
                     ),
@@ -74,9 +84,23 @@ class HorizontalCard extends StatelessWidget {
                             color: Colors.black),
                         children: <TextSpan>[
                           TextSpan(
-                              text: 'Preco: ',
+                              text: 'Preco: R\$',
                               style: TextStyle(fontWeight: FontWeight.bold)),
-                          TextSpan(text: 'R\$87.490,00'),
+                          TextSpan(text: car.price.toString()),
+                        ],
+                      ),
+                    ),
+                    RichText(
+                      overflow: TextOverflow.ellipsis,
+                      text: TextSpan(
+                        style: TextStyle(
+                            fontSize: screenSize.height * 0.022,
+                            color: Colors.black),
+                        children: <TextSpan>[
+                          TextSpan(
+                              text: 'ID: ',
+                              style: TextStyle(fontWeight: FontWeight.bold)),
+                          TextSpan(text: car.id.toString()),
                         ],
                       ),
                     ),

@@ -1,19 +1,27 @@
+import 'package:concessionaria_paiv/models/Car.dart';
+import 'package:concessionaria_paiv/utils/DatabaseHelper.dart';
 import 'package:flutter/material.dart';
 import 'package:concessionaria_paiv/widgets/VerticalCardWidget.dart';
 import 'package:concessionaria_paiv/widgets/HorizontalCardWidget.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  Car lastSold = Car(
+      id: null,
+      // image: "https://www.cstatic-images.com/stock/400x500/123919.jpg&height=369&autotrim=1"
+    );
+  List<Widget> lastAdded = [];
+  List<Car> lastAddedCars = [];
+  DatabaseHelper db = DatabaseHelper();
+
   @override
   Widget build(BuildContext context) {
-    List<Widget> lastAdded = <Widget>[
-      VerticalCard(),
-      VerticalCard(),
-      VerticalCard(),
-      VerticalCard(),
-      VerticalCard(),
-      VerticalCard(),
-    ];
-
+    getCars();
+    
     return SingleChildScrollView(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -38,7 +46,7 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                HorizontalCard(),
+                lastSold.name != null ? HorizontalCard(car: lastSold) : Card(),
               ],
             ),
           ),
@@ -72,5 +80,21 @@ class HomeScreen extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void getCars() async {
+    Car last = await db.getLastSold();
+    lastAddedCars = await db.getLastAdded();
+    List<Widget> list = [];
+
+    lastAddedCars.forEach((car) {
+      list.add(VerticalCard(car: car));
+    });
+    
+    if (mounted)
+      setState(() {
+        lastSold = last;
+        lastAdded = list;
+      });
   }
 }

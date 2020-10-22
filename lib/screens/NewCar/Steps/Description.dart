@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 
 class Description extends StatefulWidget {
+  final updateDescription;
+  Description({this.updateDescription});
   @override
   _DescriptionState createState() => _DescriptionState();
 }
@@ -31,6 +33,8 @@ class _DescriptionState extends State<Description> {
                     setState(() {
                       _brandNew = value;
                     });
+                    widget.updateDescription(
+                        _brandNew, _automaticGearshift, currentColor);
                   },
                 )
               ],
@@ -48,6 +52,8 @@ class _DescriptionState extends State<Description> {
                     setState(() {
                       _automaticGearshift = value;
                     });
+                    widget.updateDescription(
+                        _brandNew, _automaticGearshift, currentColor);
                   },
                 )
               ],
@@ -82,6 +88,7 @@ class _DescriptionState extends State<Description> {
                               onPressed: () {
                                 setState(() => currentColor = pickerColor);
                                 Navigator.of(context).pop();
+                                widget.updateDescription(_brandNew, _automaticGearshift, currentColor);
                               },
                             ),
                           ],
