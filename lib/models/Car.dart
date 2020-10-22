@@ -10,7 +10,7 @@ class Car {
   int isNew;
   int isAuto;
   String color;
-  // String image;
+  String image;
 
   Car(
       {this.id,
@@ -24,7 +24,7 @@ class Car {
       this.isNew,
       this.isAuto,
       this.color,
-      // this.image,
+      this.image,
       });
 
   Map<String, dynamic> toMap() {
@@ -40,7 +40,7 @@ class Car {
       "isNew": isNew,
       "isAuto": isAuto,
       "color": color,
-      // "image": image,
+      "image": image,
     };
   }
 }

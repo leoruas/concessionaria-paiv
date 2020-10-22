@@ -38,7 +38,7 @@ class _NewCarState extends State<NewCar> {
             ),
             Step(
               title: Text('Imagem'),
-              content: ImagePicker(
+              content: ImageStep(
                 updateImage: updateImage,
               ),
               isActive: true,
@@ -93,6 +93,6 @@ class _NewCarState extends State<NewCar> {
   }
 
   void updateImage(image) {
-    // baseCar.image = image;
+    baseCar.image = image;
   }
 }

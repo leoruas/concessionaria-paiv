@@ -1,96 +1,90 @@
-import 'package:flutter/material.dart';
+import 'dart:io';
 
-class ImagePicker extends StatefulWidget {
+import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+
+class ImageStep extends StatefulWidget {
   final updateImage;
-  final TextEditingController imageController = TextEditingController();
-  ImagePicker({this.updateImage});
+  ImageStep({this.updateImage});
   @override
-  _ImagePickerState createState() => _ImagePickerState();
+  _ImageStepState createState() => _ImageStepState();
 }
 
-class _ImagePickerState extends State<ImagePicker> {
+class _ImageStepState extends State<ImageStep> {
+  final picker = ImagePicker();
+  File image;
+
+  Future getImage() async {
+    final pickedFile = await picker.getImage(source: ImageSource.gallery);
+
+    setState(() {
+      if (pickedFile != null) {
+        image = File(pickedFile.path);
+      } else {
+        print('No image selected.');
+      }
+    });
+
+    widget.updateImage(image.path);
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
-    return Container(
+    return Center(
       child: Padding(
-        padding: const EdgeInsets.all(30.0),
-        child: Column(
-          children: [
-            Container(
-              height: size.height * 0.19,
-              width: size.height * 0.19,
-              child: Stack(
-                children: <Widget>[
-                  CircleAvatar(
-                    radius: size.width * 0.20,
-                    backgroundColor: Colors.grey,
-                    child: Icon(
-                      Icons.camera_alt,
-                      color: Colors.white,
-                      size: size.width * 0.18,
-                    ),
-                  ),
-                  /*image == null
-                      ? CircleAvatar(
-                          radius: size.width * 0.20,
-                          backgroundColor: Colors.amber,
-                          child: Icon(
-                            Icons.person,
-                            color: Colors.white,
-                            size: size.width * 0.20,
-                          ),
-                        )
-                      : CircleAvatar(
-                          radius: size.width * 0.20,
-                          backgroundColor: Colors.amber,
-                          backgroundImage: FileImage(image),
-                        ),*/
-                  Align(
-                    alignment: Alignment.bottomRight,
-                    child: Container(
-                      height: size.height * 0.04,
-                      width: size.height * 0.04,
-                      decoration: BoxDecoration(
-                        color: Colors.red,
-                        shape: BoxShape.circle,
+        padding: EdgeInsets.only(
+            top: size.height * 0.08,
+            bottom: size.height * 0.08,
+            right: size.width * 0.05),
+        child: Container(
+          height: size.height * 0.19,
+          width: size.height * 0.19,
+          child: Stack(
+            children: <Widget>[
+              image == null
+                  ? CircleAvatar(
+                      radius: size.width * 0.20,
+                      backgroundColor: Colors.grey,
+                      child: Icon(
+                        Icons.camera_alt,
+                        color: Colors.white,
+                        size: size.width * 0.18,
                       ),
-                      child: IconButton(
-                        onPressed: () => print('image'),
-                        icon: Icon(
-                          Icons.edit,
-                          color: Colors.black54,
-                        ),
-                        iconSize: 15.0,
-                      ),
+                    )
+                  : CircleAvatar(
+                      radius: size.width * 0.20,
+                      backgroundColor: Colors.amber,
+                      backgroundImage: FileImage(image),
                     ),
+              Align(
+                alignment: Alignment.bottomRight,
+                child: Container(
+                  height: size.height * 0.055,
+                  width: size.height * 0.055,
+                  decoration: BoxDecoration(
+                    color: Colors.red,
+                    shape: BoxShape.circle,
                   ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextField(
-                controller: widget.imageController,
-                onChanged: (value) =>
-                    widget.updateImage(widget.imageController.text),
-                decoration: new InputDecoration(
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(),
-                  ),
-                  labelText: 'Link',
-                  labelStyle: TextStyle(
-                    color: Colors.grey,
-                    fontWeight: FontWeight.bold,
+                  child: IconButton(
+                    onPressed: () async {
+                      try {
+                        getImage();
+                      } catch (e) {
+                        print(e);
+                      }
+                    },
+                    icon: Icon(
+                      Icons.edit,
+                      color: Colors.black54,
+                    ),
+                    iconSize: 15.0,
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
