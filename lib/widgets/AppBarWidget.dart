@@ -12,33 +12,33 @@ class _AppBarWidgetState extends State<AppBarWidget> {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-        actions: <Widget>[
-          IconButton(
-            onPressed: () {
-              setState(() {
-                if (this.btnIcon.icon == Icons.search) {
-                  this.btnIcon = Icon(Icons.close);
-                  this.appBar = TextField(
-                    autofocus: true,
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
-                    cursorColor: Colors.white,
-                    decoration: InputDecoration(
-                      focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white),
-                      ),
-                    ),
-                  );
-                } else {
-                  this.btnIcon = Icon(Icons.search);
-                  this.appBar = Text('Concessionária Paiv');
-                }
-              });
-            },
-            icon: btnIcon,
-          )
-        ],
+        // actions: <Widget>[
+        //   IconButton(
+        //     onPressed: () {
+        //       setState(() {
+        //         if (this.btnIcon.icon == Icons.search) {
+        //           this.btnIcon = Icon(Icons.close);
+        //           this.appBar = TextField(
+        //             autofocus: true,
+        //             style: TextStyle(
+        //               color: Colors.white,
+        //             ),
+        //             cursorColor: Colors.white,
+        //             decoration: InputDecoration(
+        //               focusedBorder: UnderlineInputBorder(
+        //                 borderSide: BorderSide(color: Colors.white),
+        //               ),
+        //             ),
+        //           );
+        //         } else {
+        //           this.btnIcon = Icon(Icons.search);
+        //           this.appBar = Text('Concessionária Paiv');
+        //         }
+        //       });
+        //     },
+        //     icon: btnIcon,
+        //   )
+        // ],
         title: appBar,
         backgroundColor: Colors.red.shade900,
       );

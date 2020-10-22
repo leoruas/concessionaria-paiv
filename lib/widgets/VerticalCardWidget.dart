@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:concessionaria_paiv/models/Car.dart';
 import 'package:flutter/material.dart';
 
@@ -20,8 +22,7 @@ class VerticalCard extends StatelessWidget {
               image: DecorationImage(
                 fit: BoxFit.cover,
                 alignment: FractionalOffset.topCenter,
-                image: NetworkImage(
-                    'https://s2.glbimg.com/JMEgHotm57qsaD3uBVjDHPJdyno=/620x413/e.glbimg.com/og/ed/f/original/2020/03/20/novo_tracker_1.jpg'),
+                image: FileImage(File(car.image)),
               ),
             ),
           ),
@@ -65,25 +66,25 @@ class VerticalCard extends StatelessWidget {
                           fontSize: size.height * 0.022, color: Colors.black),
                       children: <TextSpan>[
                         TextSpan(
-                            text: 'Preco: R\$',
+                            text: 'Preco: ',
                             style: TextStyle(fontWeight: FontWeight.bold)),
-                        TextSpan(text: car.price.toString()),
+                        TextSpan(text: "R\$" + car.price.toString()),
                       ],
                     ),
                   ),
-                  RichText(
-                    overflow: TextOverflow.ellipsis,
-                    text: TextSpan(
-                      style: TextStyle(
-                          fontSize: size.height * 0.022, color: Colors.black),
-                      children: <TextSpan>[
-                        TextSpan(
-                            text: 'ID: ',
-                            style: TextStyle(fontWeight: FontWeight.bold)),
-                        TextSpan(text: car.id.toString()),
-                      ],
-                    ),
-                  ),
+                  // RichText(
+                  //   overflow: TextOverflow.ellipsis,
+                  //   text: TextSpan(
+                  //     style: TextStyle(
+                  //         fontSize: size.height * 0.022, color: Colors.black),
+                  //     children: <TextSpan>[
+                  //       TextSpan(
+                  //           text: 'ID: ',
+                  //           style: TextStyle(fontWeight: FontWeight.bold)),
+                  //       TextSpan(text: car.id.toString()),
+                  //     ],
+                  //   ),
+                  // ),
                 ],
               ),
             ),

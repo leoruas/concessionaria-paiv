@@ -1,6 +1,8 @@
 class Car {
   int id;
   int inStock; //sqlite doesnt have booleans
+  int isLastSold;
+  int listID;
   String name;
   String model;
   double price;
@@ -15,6 +17,8 @@ class Car {
   Car(
       {this.id,
       this.inStock,
+      this.isLastSold,
+      this.listID,
       this.name,
       this.model,
       this.price,
@@ -31,6 +35,8 @@ class Car {
     return <String, dynamic>{
       "id": id,
       "inStock": inStock,
+      "isLastSold": isLastSold,
+      "listID": listID,
       "name": name,
       "model": model,
       "price": price,

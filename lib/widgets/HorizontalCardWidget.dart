@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:concessionaria_paiv/models/Car.dart';
 import 'package:concessionaria_paiv/screens/InfoScreen.dart';
 import 'package:concessionaria_paiv/utils/Magic.dart';
@@ -41,9 +43,9 @@ class HorizontalCard extends StatelessWidget {
                     image: DecorationImage(
                       fit: BoxFit.cover,
                       alignment: FractionalOffset.topCenter,
-                      image: NetworkImage(car.id == null
-                          ? 'https://conteudo.imguol.com.br/c/entretenimento/16/2017/06/27/naruto-1498593686428_v2_450x337.png'
-                          : 'https://s2.glbimg.com/JMEgHotm57qsaD3uBVjDHPJdyno=/620x413/e.glbimg.com/og/ed/f/original/2020/03/20/novo_tracker_1.jpg'),
+                      image: car.id == null
+                          ? NetworkImage('https://i.imgur.com/ycvwPzI.png')
+                          : FileImage(File(car.image)),
                     ),
                   ),
                 ),
@@ -87,26 +89,26 @@ class HorizontalCard extends StatelessWidget {
                               color: Colors.black),
                           children: <TextSpan>[
                             TextSpan(
-                                text: 'Preco: R\$',
+                                text: 'Preco: ',
                                 style: TextStyle(fontWeight: FontWeight.bold)),
-                            TextSpan(text: car.price.toString()),
+                            TextSpan(text: "R\$" + car.price.toString()),
                           ],
                         ),
                       ),
-                      RichText(
-                        overflow: TextOverflow.ellipsis,
-                        text: TextSpan(
-                          style: TextStyle(
-                              fontSize: screenSize.height * 0.022,
-                              color: Colors.black),
-                          children: <TextSpan>[
-                            TextSpan(
-                                text: 'ID: ',
-                                style: TextStyle(fontWeight: FontWeight.bold)),
-                            TextSpan(text: car.id.toString()),
-                          ],
-                        ),
-                      ),
+                      // RichText(
+                      //   overflow: TextOverflow.ellipsis,
+                      //   text: TextSpan(
+                      //     style: TextStyle(
+                      //         fontSize: screenSize.height * 0.022,
+                      //         color: Colors.black),
+                      //     children: <TextSpan>[
+                      //       TextSpan(
+                      //           text: 'ID: ',
+                      //           style: TextStyle(fontWeight: FontWeight.bold)),
+                      //       TextSpan(text: car.listID.toString()),
+                      //     ],
+                      //   ),
+                      // ),
                     ],
                   ),
                 if (car.id == null)
@@ -115,7 +117,7 @@ class HorizontalCard extends StatelessWidget {
                       RichText(
                         overflow: TextOverflow.clip,
                         text: TextSpan(
-                          text: "Nenhum carro ajksdjkaskjd",
+                          text: "Nenhum carro",
                           style: TextStyle(
                               fontSize: screenSize.height * 0.022,
                               color: Colors.black),

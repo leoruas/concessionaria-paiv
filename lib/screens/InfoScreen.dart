@@ -1,9 +1,13 @@
+import 'dart:io';
+
 import 'package:concessionaria_paiv/models/Car.dart';
+import 'package:concessionaria_paiv/utils/DatabaseHelper.dart';
 import 'package:concessionaria_paiv/utils/Magic.dart';
 import 'package:concessionaria_paiv/widgets/AtributoInfo.dart';
 import 'package:flutter/material.dart';
 
 class InfoScreen extends StatelessWidget {
+  final DatabaseHelper db = DatabaseHelper();
   final Car car;
   InfoScreen({@required this.car});
 
@@ -14,6 +18,10 @@ class InfoScreen extends StatelessWidget {
         appBar: AppBar(
           title: Text('Informações'),
           actions: [
+            IconButton(
+                icon: Icon(
+                    car.inStock == 1 ? Icons.attach_money : Icons.money_off),
+                onPressed: () => sellDialog(context)),
             IconButton(
                 icon: Icon(Icons.edit),
                 onPressed: () => Navigator.pushNamed(context, newCarRouteName)),
@@ -26,10 +34,10 @@ class InfoScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              SizedBox(
-                child: Image.network(
-                    'https://s2.glbimg.com/JMEgHotm57qsaD3uBVjDHPJdyno=/620x413/e.glbimg.com/og/ed/f/original/2020/03/20/novo_tracker_1.jpg'),
-              ),
+              SizedBox(child: Image.file(File(car.image))
+                  // Image.network(
+                  //     'https://s2.glbimg.com/JMEgHotm57qsaD3uBVjDHPJdyno=/620x413/e.glbimg.com/og/ed/f/original/2020/03/20/novo_tracker_1.jpg'),
+                  ),
               Padding(
                   padding: EdgeInsets.all(10.00),
                   child: Column(
@@ -65,12 +73,12 @@ class InfoScreen extends StatelessWidget {
                             ),
                           ),
                           Container(
-                            padding: EdgeInsets.only(left: screenSize.width * 0.18),
+                            padding:
+                                EdgeInsets.only(left: screenSize.width * 0.18),
                             child: RawMaterialButton(
-                              onPressed: null,
-                              shape: CircleBorder(),
-                              fillColor: new Color(car.color)
-                            ),
+                                onPressed: null,
+                                shape: CircleBorder(),
+                                fillColor: new Color(car.color)),
                           ),
                         ],
                       )
@@ -100,6 +108,46 @@ class InfoScreen extends StatelessWidget {
             TextButton(
               child: Text('Sim'),
               onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: Text('Cancelar'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<void> sellDialog(BuildContext context) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Marcar veículo como ' +
+              (car.inStock == 1 ? 'vendido' : 'em estoque')),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text('Deseja marcar o veículo como ' +
+                    (car.inStock == 1 ? 'vendido' : 'em estoque') +
+                    '?'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: Text('Sim'),
+              onPressed: () {
+                if (car.inStock == 1) db.updateLastSold(car.id);
+                else db.goBackLastSold();
+                db.changeStockStatus(car.id, car.inStock);
+                Navigator.of(context).pop();
                 Navigator.of(context).pop();
               },
             ),

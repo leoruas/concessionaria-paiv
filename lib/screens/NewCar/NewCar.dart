@@ -93,6 +93,8 @@ class _NewCarState extends State<NewCar> {
   }
 
   void updateImage(image) {
+    print("image");
+    print(image);
     baseCar.image = image;
   }
 }

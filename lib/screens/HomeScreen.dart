@@ -81,7 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  "Nenhum carro",
+                                  "Nenhum carro adicionado",
                                   style: TextStyle(fontSize: screenSize.height * 0.023),
                                 ),
                               ],
