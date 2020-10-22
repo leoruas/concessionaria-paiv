@@ -9,7 +9,7 @@ class Car {
   int km;
   int isNew;
   int isAuto;
-  String color;
+  int color;
   String image;
 
   Car(
