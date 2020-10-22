@@ -9,12 +9,17 @@ class InfoScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size screenSize = MediaQuery.of(context).size;
     return Scaffold(
         appBar: AppBar(
           title: Text('Informações'),
           actions: [
-            IconButton(icon: Icon(Icons.edit), onPressed: () => Navigator.pushNamed(context, newCarRouteName)),
-            IconButton(icon: Icon(Icons.delete), onPressed: () => _mostrarDialogoDeletar(context))
+            IconButton(
+                icon: Icon(Icons.edit),
+                onPressed: () => Navigator.pushNamed(context, newCarRouteName)),
+            IconButton(
+                icon: Icon(Icons.delete),
+                onPressed: () => _mostrarDialogoDeletar(context))
           ],
         ),
         body: SingleChildScrollView(
@@ -31,38 +36,44 @@ class InfoScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       AtributoInfo('Nome', car.name),
-                      Divider(
-                          color: Colors.grey
-                      ),
+                      Divider(color: Colors.grey),
                       AtributoInfo('Modelo', car.model),
-                      Divider(
-                          color: Colors.grey
-                      ),
+                      Divider(color: Colors.grey),
                       AtributoInfo('Preço', 'R\$ ' + car.price.toString()),
-                      Divider(
-                          color: Colors.grey
-                      ),
+                      Divider(color: Colors.grey),
                       AtributoInfo('Ano', car.year.toString()),
-                      Divider(
-                          color: Colors.grey
-                      ),
+                      Divider(color: Colors.grey),
                       AtributoInfo('Marca', car.brand),
-                      Divider(
-                          color: Colors.grey
-                      ),
+                      Divider(color: Colors.grey),
                       AtributoInfo('Km', car.km.toString()),
-                      Divider(
-                          color: Colors.grey
-                      ),
-                      AtributoInfo('Carro Novo', car.isNew == 1 ? 'Sim' : 'Não'),
-                      Divider(
-                          color: Colors.grey
-                      ),
-                      AtributoInfo('Câmbio', car.isAuto == 1 ? 'Automático' : 'Manual'),
-                      Divider(
-                          color: Colors.grey
-                      ),
-                      AtributoInfo('Cor', car.color)
+                      Divider(color: Colors.grey),
+                      AtributoInfo(
+                          'Carro Novo', car.isNew == 1 ? 'Sim' : 'Não'),
+                      Divider(color: Colors.grey),
+                      AtributoInfo(
+                          'Câmbio', car.isAuto == 1 ? 'Automático' : 'Manual'),
+                      Divider(color: Colors.grey),
+                      // AtributoInfo('Cor', car.color)
+                      Row(
+                        children: <Widget>[
+                          Text(
+                            "Cor",
+                            style: TextStyle(
+                              fontSize: screenSize.height * 0.022,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Container(
+                            padding: EdgeInsets.only(left: screenSize.width * 0.18),
+                            child: RawMaterialButton(
+                              onPressed: null,
+                              shape: CircleBorder(),
+                              fillColor: new Color(car.color)
+                            ),
+                          ),
+                        ],
+                      )
                     ],
                   )),
             ],

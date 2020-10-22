@@ -11,17 +11,18 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   Car lastSold = Car(
-      id: null,
-      // image: "https://www.cstatic-images.com/stock/400x500/123919.jpg&height=369&autotrim=1"
-    );
+    id: null,
+    // image: "https://www.cstatic-images.com/stock/400x500/123919.jpg&height=369&autotrim=1"
+  );
   List<Widget> lastAdded = [];
   List<Car> lastAddedCars = [];
   DatabaseHelper db = DatabaseHelper();
 
   @override
   Widget build(BuildContext context) {
+    Size screenSize = MediaQuery.of(context).size;
     getCars();
-    
+
     return SingleChildScrollView(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -46,7 +47,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 ),
-                lastSold.name != null ? HorizontalCard(car: lastSold) : Card(),
+                lastSold.name != null
+                    ? HorizontalCard(car: lastSold)
+                    : HorizontalCard(car: new Car(id: null)),
               ],
             ),
           ),
@@ -71,7 +74,20 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: ListView(
                     // This next line does the trick.
                     scrollDirection: Axis.horizontal,
-                    children: lastAdded,
+                    children: lastAdded.length == 0
+                        ? <Widget>[
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "Nenhum carro",
+                                  style: TextStyle(fontSize: screenSize.height * 0.023),
+                                ),
+                              ],
+                            ),
+                          ]
+                        : lastAdded,
                   ),
                 ),
               ],
@@ -90,7 +106,7 @@ class _HomeScreenState extends State<HomeScreen> {
     lastAddedCars.forEach((car) {
       list.add(VerticalCard(car: car));
     });
-    
+
     if (mounted)
       setState(() {
         lastSold = last;

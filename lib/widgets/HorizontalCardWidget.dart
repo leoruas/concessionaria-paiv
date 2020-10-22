@@ -16,19 +16,20 @@ class HorizontalCard extends StatelessWidget {
         elevation: 2,
         child: Stack(
           children: <Widget>[
-            Positioned(
-              top: screenSize.height * 0.01,
-              right: screenSize.height * 0.01,
-              child: GestureDetector(
-                child: Icon(Icons.info, color: Colors.grey[500]),
-                onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => InfoScreen(car: car),
+            if (car.id != null)
+              Positioned(
+                top: screenSize.height * 0.01,
+                right: screenSize.height * 0.01,
+                child: GestureDetector(
+                  child: Icon(Icons.info, color: Colors.grey[500]),
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => InfoScreen(car: car),
+                    ),
                   ),
                 ),
               ),
-            ),
             Row(
               children: <Widget>[
                 Container(
@@ -40,72 +41,88 @@ class HorizontalCard extends StatelessWidget {
                     image: DecorationImage(
                       fit: BoxFit.cover,
                       alignment: FractionalOffset.topCenter,
-                      image: NetworkImage(
-                          'https://s2.glbimg.com/JMEgHotm57qsaD3uBVjDHPJdyno=/620x413/e.glbimg.com/og/ed/f/original/2020/03/20/novo_tracker_1.jpg'),
+                      image: NetworkImage(car.id == null
+                          ? 'https://conteudo.imguol.com.br/c/entretenimento/16/2017/06/27/naruto-1498593686428_v2_450x337.png'
+                          : 'https://s2.glbimg.com/JMEgHotm57qsaD3uBVjDHPJdyno=/620x413/e.glbimg.com/og/ed/f/original/2020/03/20/novo_tracker_1.jpg'),
                     ),
                   ),
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    RichText(
-                      overflow: TextOverflow.ellipsis,
-                      text: TextSpan(
-                        style: TextStyle(
-                            fontSize: screenSize.height * 0.022,
-                            color: Colors.black),
-                        children: <TextSpan>[
-                          TextSpan(
-                              text: 'Carro: ',
-                              style: TextStyle(fontWeight: FontWeight.bold)),
-                          TextSpan(text: car.name),
-                        ],
+                if (car.id != null)
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      RichText(
+                        overflow: TextOverflow.ellipsis,
+                        text: TextSpan(
+                          style: TextStyle(
+                              fontSize: screenSize.height * 0.022,
+                              color: Colors.black),
+                          children: <TextSpan>[
+                            TextSpan(
+                                text: 'Carro: ',
+                                style: TextStyle(fontWeight: FontWeight.bold)),
+                            TextSpan(text: car.name),
+                          ],
+                        ),
                       ),
-                    ),
-                    RichText(
-                      overflow: TextOverflow.ellipsis,
-                      text: TextSpan(
-                        style: TextStyle(
-                            fontSize: screenSize.height * 0.022,
-                            color: Colors.black),
-                        children: <TextSpan>[
-                          TextSpan(
-                              text: 'Modelo: ',
-                              style: TextStyle(fontWeight: FontWeight.bold)),
-                          TextSpan(text: car.model),
-                        ],
+                      RichText(
+                        overflow: TextOverflow.ellipsis,
+                        text: TextSpan(
+                          style: TextStyle(
+                              fontSize: screenSize.height * 0.022,
+                              color: Colors.black),
+                          children: <TextSpan>[
+                            TextSpan(
+                                text: 'Modelo: ',
+                                style: TextStyle(fontWeight: FontWeight.bold)),
+                            TextSpan(text: car.model),
+                          ],
+                        ),
                       ),
-                    ),
-                    RichText(
-                      overflow: TextOverflow.ellipsis,
-                      text: TextSpan(
-                        style: TextStyle(
-                            fontSize: screenSize.height * 0.022,
-                            color: Colors.black),
-                        children: <TextSpan>[
-                          TextSpan(
-                              text: 'Preco: R\$',
-                              style: TextStyle(fontWeight: FontWeight.bold)),
-                          TextSpan(text: car.price.toString()),
-                        ],
+                      RichText(
+                        overflow: TextOverflow.ellipsis,
+                        text: TextSpan(
+                          style: TextStyle(
+                              fontSize: screenSize.height * 0.022,
+                              color: Colors.black),
+                          children: <TextSpan>[
+                            TextSpan(
+                                text: 'Preco: R\$',
+                                style: TextStyle(fontWeight: FontWeight.bold)),
+                            TextSpan(text: car.price.toString()),
+                          ],
+                        ),
                       ),
-                    ),
-                    RichText(
-                      overflow: TextOverflow.ellipsis,
-                      text: TextSpan(
-                        style: TextStyle(
-                            fontSize: screenSize.height * 0.022,
-                            color: Colors.black),
-                        children: <TextSpan>[
-                          TextSpan(
-                              text: 'ID: ',
-                              style: TextStyle(fontWeight: FontWeight.bold)),
-                          TextSpan(text: car.id.toString()),
-                        ],
+                      RichText(
+                        overflow: TextOverflow.ellipsis,
+                        text: TextSpan(
+                          style: TextStyle(
+                              fontSize: screenSize.height * 0.022,
+                              color: Colors.black),
+                          children: <TextSpan>[
+                            TextSpan(
+                                text: 'ID: ',
+                                style: TextStyle(fontWeight: FontWeight.bold)),
+                            TextSpan(text: car.id.toString()),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
-                ),
+                    ],
+                  ),
+                if (car.id == null)
+                  Column(
+                    children: [
+                      RichText(
+                        overflow: TextOverflow.clip,
+                        text: TextSpan(
+                          text: "Nenhum carro ajksdjkaskjd",
+                          style: TextStyle(
+                              fontSize: screenSize.height * 0.022,
+                              color: Colors.black),
+                        ),
+                      ),
+                    ],
+                  )
               ],
             ),
           ],

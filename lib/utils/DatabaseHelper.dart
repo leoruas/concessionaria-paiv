@@ -26,7 +26,7 @@ class DatabaseHelper {
             km INTEGER,
             isNew INTEGER,
             isAuto INTEGER,
-            color TEXT
+            color INTEGER
           )
         """);
       },

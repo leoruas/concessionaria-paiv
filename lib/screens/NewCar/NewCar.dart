@@ -89,7 +89,7 @@ class _NewCarState extends State<NewCar> {
   void updateDescription(isNew, isAuto, color) {
     baseCar.isNew = isNew ? 1 : 0;
     baseCar.isAuto = isAuto ? 1 : 0;
-    baseCar.color = color.toString();
+    baseCar.color = color.value;
   }
 
   void updateImage(image) {
