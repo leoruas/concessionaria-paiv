@@ -43,7 +43,6 @@ class DatabaseHelper {
 
     item.listID = (await getCarsInStock()).length;
 
-
     db.rawInsert(
       """
       INSERT INTO Cars (listID, inStock, name, model, price, year, brand, km, isNew, isAuto, color, image, isLastSold)
@@ -98,11 +97,9 @@ class DatabaseHelper {
 
   Future<List<Car>> getSoldCars() async {
     final db = await init();
-    final maps = await db.query(
-      "Cars",
-      where: 'inStock = 0', //false
-      orderBy: 'listID'
-    ); //query all the rows in a table as an array of maps
+    final maps = await db.query("Cars",
+        where: 'inStock = 0', //false
+        orderBy: 'listID'); //query all the rows in a table as an array of maps
 
     return List.generate(maps.length, (i) {
       //create a list of memos
@@ -193,7 +190,7 @@ class DatabaseHelper {
     int listID;
     final db = await init();
 
-    if(current == 1) {
+    if (current == 1) {
       //car is in stock -> going to sold
       cars = await getSoldCars();
 
@@ -204,7 +201,6 @@ class DatabaseHelper {
 
       listID = cars.length;
     }
-
 
     await db.rawUpdate(
       """
@@ -227,25 +223,62 @@ class DatabaseHelper {
         UPDATE Cars SET isLastSold = 1
           WHERE id = ?
     """, [id]);
-
-    
   }
 
-  Future<void> goBackLastSold() async{
+  Future<void> goBackLastSold() async {
     final db = await init();
     List<Car> cars = [];
 
     cars = await getSoldCars();
 
-    if(cars.length == 1) {
+    if (cars.length == 1) {
       // is the last car in sold
       await db.rawUpdate("""
           UPDATE Cars SET isLastSold = 0
           WHERE isLastSold = 1
       """);
     } else {
-      await updateLastSold(cars[cars.length -1].id);
+      await updateLastSold(cars[cars.length - 2].id);
     }
+  }
 
+  Future<void> deleteCar(int id) async {
+    final db = await init();
+
+    db.rawDelete("""
+          DELETE FROM Cars
+            WHERE id = ?
+    """, [id]);
+  }
+
+  Future<void> updateCar(Car newCar) async {
+    final db = await init();
+
+    db.rawUpdate("""
+        UPDATE Cars SET
+          name = ?
+          model = ?
+          price = ?
+          year = ?
+          brand = ?
+          km = ?
+          isNew = ?
+          isAuto = ?
+          color = ?
+          image = ?
+        WHERE id = ?
+    """, [
+      newCar.name,
+      newCar.model,
+      newCar.price,
+      newCar.year,
+      newCar.brand,
+      newCar.km,
+      newCar.isNew,
+      newCar.isAuto,
+      newCar.color,
+      newCar.image,
+      newCar.id
+    ]);
   }
 }

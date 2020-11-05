@@ -14,22 +14,22 @@ class Car {
   int color;
   String image;
 
-  Car(
-      {this.id,
-      this.inStock,
-      this.isLastSold,
-      this.listID,
-      this.name,
-      this.model,
-      this.price,
-      this.year,
-      this.brand,
-      this.km,
-      this.isNew,
-      this.isAuto,
-      this.color,
-      this.image,
-      });
+  Car({
+    this.id,
+    this.inStock,
+    this.isLastSold,
+    this.listID,
+    this.name,
+    this.model,
+    this.price,
+    this.year,
+    this.brand,
+    this.km,
+    this.isNew,
+    this.isAuto,
+    this.color,
+    this.image,
+  });
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
