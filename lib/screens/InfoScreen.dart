@@ -108,6 +108,8 @@ class InfoScreen extends StatelessWidget {
             TextButton(
               child: Text('Sim'),
               onPressed: () {
+                db.deleteCar(car.id);
+                Navigator.of(context).pop();
                 Navigator.of(context).pop();
               },
             ),
