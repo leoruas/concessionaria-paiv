@@ -256,15 +256,15 @@ class DatabaseHelper {
 
     db.rawUpdate("""
         UPDATE Cars SET
-          name = ?
-          model = ?
-          price = ?
-          year = ?
-          brand = ?
-          km = ?
-          isNew = ?
-          isAuto = ?
-          color = ?
+          name = ?,
+          model = ?,
+          price = ?,
+          year = ?,
+          brand = ?,
+          km = ?,
+          isNew = ?,
+          isAuto = ?,
+          color = ?,
           image = ?
         WHERE id = ?
     """, [

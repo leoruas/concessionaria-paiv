@@ -17,12 +17,14 @@ class _NewCarState extends State<NewCar> {
   int _currentStep = 0;
   DatabaseHelper db = DatabaseHelper();
   Car baseCar;
+  bool isNewCar = true;
 
   _NewCarState();
 
   void initState() {
     if (widget.car != null) {
       setState(() {
+        isNewCar = false;
         baseCar = widget.car;
       });
     } else {
@@ -81,7 +83,13 @@ class _NewCarState extends State<NewCar> {
               //add new car
               baseCar.inStock = 1; //true
 
-              db.addItem(baseCar);
+              if(isNewCar) {
+                db.addItem(baseCar);
+              } else {
+                db.updateCar(baseCar);
+                Navigator.pop(context);
+              }
+              
             }
           },
           onStepCancel: () {

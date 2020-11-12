@@ -78,7 +78,7 @@ class InfoScreen extends StatelessWidget {
                             child: RawMaterialButton(
                                 onPressed: null,
                                 shape: CircleBorder(),
-                                fillColor: new Color(car.color)),
+                                fillColor: new Color(car.color != null ? car.color : 000000)),
                           ),
                         ],
                       )
@@ -95,7 +95,7 @@ class InfoScreen extends StatelessWidget {
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Deletar Veículo Tracker'),
+          title: Text('Deletar Veículo'),
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
