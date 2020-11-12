@@ -17,6 +17,7 @@ class _NewCarState extends State<NewCar> {
   int _currentStep = 0;
   DatabaseHelper db = DatabaseHelper();
   Car baseCar;
+  List<Step> stepList = [];
 
   _NewCarState();
 
@@ -30,6 +31,34 @@ class _NewCarState extends State<NewCar> {
         baseCar = Car();
       });
     }
+    
+    stepList = [
+      Step(
+        title: Text('Informações'),
+        content: TextInputs(
+          baseCar,
+          updateInfo: updateInfo,
+        ),
+        isActive: true,
+      ),
+      Step(
+        title: Text('Características'),
+        content: Description(
+          baseCar,
+          updateDescription: updateDescription,
+        ),
+        isActive: true,
+      ),
+      Step(
+        title: Text('Imagem'),
+        content: ImageStep(
+          baseCar,
+          updateImage: updateImage,
+        ),
+        isActive: true,
+      ),
+    ];
+
     super.initState();
   }
 

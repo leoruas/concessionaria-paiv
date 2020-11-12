@@ -4,12 +4,7 @@ import 'package:flutter/material.dart';
 class TextInputs extends StatefulWidget {
   final Car car;
   final updateInfo;
-  final TextEditingController nameController = TextEditingController();
-  final TextEditingController modelController = TextEditingController();
-  final TextEditingController brandController = TextEditingController();
-  final TextEditingController priceController = TextEditingController();
-  final TextEditingController yearController = TextEditingController();
-  final TextEditingController kmController = TextEditingController();
+
   TextInputs(this.car, {this.updateInfo});
 
   @override
@@ -17,16 +12,22 @@ class TextInputs extends StatefulWidget {
 }
 
 class _TextInputsState extends State<TextInputs> {
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController modelController = TextEditingController();
+  final TextEditingController brandController = TextEditingController();
+  final TextEditingController priceController = TextEditingController();
+  final TextEditingController yearController = TextEditingController();
+  final TextEditingController kmController = TextEditingController();
 
   void initState() {
     if (widget.car.id != null) {
       setState(() {
-        widget.nameController.text = widget.car.name;
-        widget.modelController.text = widget.car.model;
-        widget.brandController.text = widget.car.brand;
-        widget.priceController.text = widget.car.price.toString();
-        widget.yearController.text = widget.car.year.toString();
-        widget.kmController.text = widget.car.km.toString();
+        nameController.text = widget.car.name;
+        modelController.text = widget.car.model;
+        brandController.text = widget.car.brand;
+        priceController.text = widget.car.price.toString();
+        yearController.text = widget.car.year.toString();
+        kmController.text = widget.car.km.toString();
       });
     }
     super.initState();
@@ -40,8 +41,8 @@ class _TextInputsState extends State<TextInputs> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextField(
-              controller: widget.nameController,
-              onChanged: (value) => widget.updateInfo(widget.nameController.text, widget.modelController.text, widget.brandController.text, widget.priceController.text, widget.yearController.text, widget.kmController.text),
+              controller: nameController,
+              onChanged: (value) => widget.updateInfo(nameController.text, modelController.text, brandController.text, priceController.text, yearController.text, kmController.text),
               decoration: new InputDecoration(
                 focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(),
@@ -60,8 +61,8 @@ class _TextInputsState extends State<TextInputs> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextField(
-              controller: widget.modelController,
-              onChanged: (value) => widget.updateInfo(widget.nameController.text, widget.modelController.text, widget.brandController.text, widget.priceController.text, widget.yearController.text, widget.kmController.text),
+              controller: modelController,
+              onChanged: (value) => widget.updateInfo(nameController.text, modelController.text, brandController.text, priceController.text, yearController.text, kmController.text),
               decoration: new InputDecoration(
                 focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(),
@@ -80,8 +81,8 @@ class _TextInputsState extends State<TextInputs> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextField(
-              controller: widget.brandController,
-              onChanged: (value) => widget.updateInfo(widget.nameController.text, widget.modelController.text, widget.brandController.text, widget.priceController.text, widget.yearController.text, widget.kmController.text),
+              controller: brandController,
+              onChanged: (value) => widget.updateInfo(nameController.text, modelController.text, brandController.text, priceController.text, yearController.text, kmController.text),
               decoration: new InputDecoration(
                 focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(),
@@ -100,9 +101,9 @@ class _TextInputsState extends State<TextInputs> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextField(
-              controller: widget.priceController,
+              controller: priceController,
               keyboardType: TextInputType.number,
-              onChanged: (value) => widget.updateInfo(widget.nameController.text, widget.modelController.text, widget.brandController.text, widget.priceController.text, widget.yearController.text, widget.kmController.text),
+              onChanged: (value) => widget.updateInfo(nameController.text, modelController.text, brandController.text, priceController.text, yearController.text, kmController.text),
               decoration: new InputDecoration(
                 focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(),
@@ -121,9 +122,9 @@ class _TextInputsState extends State<TextInputs> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextField(
-              controller: widget.yearController,
+              controller: yearController,
               keyboardType: TextInputType.number,
-              onChanged: (value) => widget.updateInfo(widget.nameController.text, widget.modelController.text, widget.brandController.text, widget.priceController.text, widget.yearController.text, widget.kmController.text),
+              onChanged: (value) => widget.updateInfo(nameController.text, modelController.text, brandController.text, priceController.text, yearController.text, kmController.text),
               decoration: new InputDecoration(
                 focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(),
@@ -142,9 +143,9 @@ class _TextInputsState extends State<TextInputs> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextField(
-              controller: widget.kmController,
+              controller: kmController,
               keyboardType: TextInputType.number,
-              onChanged: (value) => widget.updateInfo(widget.nameController.text, widget.modelController.text, widget.brandController.text, widget.priceController.text, widget.yearController.text, widget.kmController.text),
+              onChanged: (value) => widget.updateInfo(nameController.text, modelController.text, brandController.text, priceController.text, yearController.text, kmController.text),
               decoration: new InputDecoration(
                 focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(),
