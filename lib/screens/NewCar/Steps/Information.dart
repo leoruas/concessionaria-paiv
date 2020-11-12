@@ -19,8 +19,7 @@ class TextInputs extends StatefulWidget {
 class _TextInputsState extends State<TextInputs> {
 
   void initState() {
-    print(widget.car.name);
-    if (widget.car.name != null) {
+    if (widget.car.id != null) {
       setState(() {
         widget.nameController.text = widget.car.name;
         widget.modelController.text = widget.car.model;

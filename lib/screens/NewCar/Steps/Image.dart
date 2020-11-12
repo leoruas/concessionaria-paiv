@@ -19,7 +19,7 @@ class _ImageStepState extends State<ImageStep> {
   File image;
 
   void initState() {
-    if (widget.car.name != null) {
+    if (widget.car.id != null) {
       setState(() {
         image = File(widget.car.image);
       });

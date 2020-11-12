@@ -18,7 +18,7 @@ class _DescriptionState extends State<Description> {
   Color currentColor = Color(0xff443a49);
 
   void initState() {
-    if (widget.car.name != null) {
+    if (widget.car.id != null) {
       setState(() {
         widget.car.isNew == 1 ? _brandNew = true : _brandNew = false;
         widget.car.isAuto == 1 ? _automaticGearshift = true : _automaticGearshift = false;
