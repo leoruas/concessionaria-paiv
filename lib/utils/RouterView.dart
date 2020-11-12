@@ -8,7 +8,7 @@ class RouterView {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case newCarRouteName:
-        return MaterialPageRoute(builder: (_) => NewCar());
+        return MaterialPageRoute(builder: (_) => NewCar(settings.arguments));
       case infoCarRouteName:
         return MaterialPageRoute(builder: (_) => InfoScreen());
     }

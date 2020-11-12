@@ -1,9 +1,12 @@
+import 'package:concessionaria_paiv/models/Car.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 
 class Description extends StatefulWidget {
+  final Car car;
   final updateDescription;
-  Description({this.updateDescription});
+  Description(this.car, {this.updateDescription});
+
   @override
   _DescriptionState createState() => _DescriptionState();
 }
@@ -13,6 +16,18 @@ class _DescriptionState extends State<Description> {
   bool _brandNew = false;
   Color pickerColor = Color(0xff443a49);
   Color currentColor = Color(0xff443a49);
+
+  void initState() {
+    if (widget.car.name != null) {
+      setState(() {
+        widget.car.isNew == 1 ? _brandNew = true : _brandNew = false;
+        widget.car.isAuto == 1 ? _automaticGearshift = true : _automaticGearshift = false;
+        currentColor = Color(widget.car.color);
+        pickerColor = Color(widget.car.color);
+      });
+    }
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +103,8 @@ class _DescriptionState extends State<Description> {
                               onPressed: () {
                                 setState(() => currentColor = pickerColor);
                                 Navigator.of(context).pop();
-                                widget.updateDescription(_brandNew, _automaticGearshift, currentColor);
+                                widget.updateDescription(_brandNew,
+                                    _automaticGearshift, currentColor);
                               },
                             ),
                           ],

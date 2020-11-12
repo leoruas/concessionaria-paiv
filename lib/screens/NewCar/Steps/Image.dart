@@ -1,11 +1,15 @@
 import 'dart:io';
 
+import 'package:concessionaria_paiv/models/Car.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ImageStep extends StatefulWidget {
   final updateImage;
-  ImageStep({this.updateImage});
+  final Car car;
+
+  ImageStep(this.car, {this.updateImage});
+
   @override
   _ImageStepState createState() => _ImageStepState();
 }
@@ -13,6 +17,15 @@ class ImageStep extends StatefulWidget {
 class _ImageStepState extends State<ImageStep> {
   final picker = ImagePicker();
   File image;
+
+  void initState() {
+    if (widget.car.name != null) {
+      setState(() {
+        image = File(widget.car.image);
+      });
+    }
+    super.initState();
+  }
 
   Future getImage() async {
     final pickedFile = await picker.getImage(source: ImageSource.gallery);

@@ -1,6 +1,8 @@
+import 'package:concessionaria_paiv/models/Car.dart';
 import 'package:flutter/material.dart';
 
 class TextInputs extends StatefulWidget {
+  final Car car;
   final updateInfo;
   final TextEditingController nameController = TextEditingController();
   final TextEditingController modelController = TextEditingController();
@@ -8,13 +10,29 @@ class TextInputs extends StatefulWidget {
   final TextEditingController priceController = TextEditingController();
   final TextEditingController yearController = TextEditingController();
   final TextEditingController kmController = TextEditingController();
-  TextInputs({this.updateInfo});
+  TextInputs(this.car, {this.updateInfo});
 
   @override
   _TextInputsState createState() => _TextInputsState();
 }
 
 class _TextInputsState extends State<TextInputs> {
+
+  void initState() {
+    print(widget.car.name);
+    if (widget.car.name != null) {
+      setState(() {
+        widget.nameController.text = widget.car.name;
+        widget.modelController.text = widget.car.model;
+        widget.brandController.text = widget.car.brand;
+        widget.priceController.text = widget.car.price.toString();
+        widget.yearController.text = widget.car.year.toString();
+        widget.kmController.text = widget.car.km.toString();
+      });
+    }
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(

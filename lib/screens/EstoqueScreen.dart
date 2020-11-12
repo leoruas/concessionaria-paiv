@@ -26,7 +26,7 @@ class _EstoqueScreenState extends State<EstoqueScreen> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => Navigator.pushNamed(context, newCarRouteName),
+        onPressed: () => Navigator.pushNamed(context, newCarRouteName, arguments: null),
         child: Icon(Icons.add),
         backgroundColor: Colors.red.shade900,
       ),

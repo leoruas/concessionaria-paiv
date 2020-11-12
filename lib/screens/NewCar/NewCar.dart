@@ -6,6 +6,9 @@ import 'package:concessionaria_paiv/utils/DatabaseHelper.dart';
 import 'package:flutter/material.dart';
 
 class NewCar extends StatefulWidget {
+  final Car car;
+  NewCar(args) : this.car = args;
+
   @override
   _NewCarState createState() => _NewCarState();
 }
@@ -13,7 +16,22 @@ class NewCar extends StatefulWidget {
 class _NewCarState extends State<NewCar> {
   int _currentStep = 0;
   DatabaseHelper db = DatabaseHelper();
-  Car baseCar = Car();
+  Car baseCar;
+
+  _NewCarState();
+
+  void initState() {
+    if (widget.car != null) {
+      setState(() {
+        baseCar = widget.car;
+      });
+    } else {
+      setState(() {
+        baseCar = Car();
+      });
+    }
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +43,7 @@ class _NewCarState extends State<NewCar> {
             Step(
               title: Text('Informações'),
               content: TextInputs(
+                baseCar,
                 updateInfo: updateInfo,
               ),
               isActive: true,
@@ -32,6 +51,7 @@ class _NewCarState extends State<NewCar> {
             Step(
               title: Text('Características'),
               content: Description(
+                baseCar,
                 updateDescription: updateDescription,
               ),
               isActive: true,
@@ -39,6 +59,7 @@ class _NewCarState extends State<NewCar> {
             Step(
               title: Text('Imagem'),
               content: ImageStep(
+                baseCar,
                 updateImage: updateImage,
               ),
               isActive: true,

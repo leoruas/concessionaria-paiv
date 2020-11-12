@@ -24,7 +24,7 @@ class InfoScreen extends StatelessWidget {
                 onPressed: () => sellDialog(context)),
             IconButton(
                 icon: Icon(Icons.edit),
-                onPressed: () => Navigator.pushNamed(context, newCarRouteName)),
+                onPressed: () => Navigator.pushNamed(context, newCarRouteName, arguments: car)),
             IconButton(
                 icon: Icon(Icons.delete),
                 onPressed: () => _mostrarDialogoDeletar(context))
