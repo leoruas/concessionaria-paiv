@@ -161,7 +161,7 @@ class DatabaseHelper {
       "Cars",
       where: 'inStock = 1', //true
       limit: 6,
-      orderBy: 'id DESC',
+      orderBy: 'listID DESC',
     ); //query all the rows in a table as an array of maps
 
     return List.generate(maps.length, (i) {
@@ -189,17 +189,24 @@ class DatabaseHelper {
     List<Car> cars = [];
     int listID;
     final db = await init();
+    print("here");
 
     if (current == 1) {
       //car is in stock -> going to sold
       cars = await getSoldCars();
 
-      listID = cars.length;
+      if(cars.length > 0)
+        listID = cars[cars.length - 1].listID + 1;
+      else
+        listID = 0;
     } else {
       //going to stock
       cars = await getCarsInStock();
 
-      listID = cars.length;
+      if(cars.length > 0)
+        listID = cars[cars.length - 1].listID + 1;
+      else
+        listID = 0;
     }
 
     await db.rawUpdate(
